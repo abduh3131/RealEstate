@@ -59,7 +59,7 @@
                         </article>
                     </div>
 
-                    <form class="contact-form reveal" id="contact-form" action="contact-form-handler.php" method="post" novalidate>
+                    <form class="contact-form reveal" id="contact-form" novalidate>
                         <h3>Send us a message</h3>
                         <label for="name">Name</label>
                         <input id="name" name="name" type="text" placeholder="Your Name" required>
@@ -110,43 +110,65 @@
 
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        const map = L.map('map', { scrollWheelZoom: false });
-        const coordinates = [43.905758240182095, -78.81154853576793];
-        map.setView(coordinates, 17);
+        const latitude = 43.90574082062903;
+        const longitude = -78.81129641104262;
+        const location = [latitude, longitude];
+        const highlightRadius = 120;
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+        const map = L.map('map', { scrollWheelZoom: false }).setView(location, 16);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        L.marker(coordinates).addTo(map)
-            .bindPopup('Al-Ajeal Real Estate Team')
-            .openPopup();
+        const marker = L.marker(location).addTo(map);
+
+        const circle = L.circle(location, {
+            radius: highlightRadius,
+            fillOpacity: 0.15,
+            weight: 1,
+            color: '#d22f25'
+        }).addTo(map);
+
+        const googleDirections = 'https://www.google.com/maps/place/Al-Ajeal+Real+Estate+Team/@43.9057022,-78.8141342,17z/data=!3m1!4b1!4m6!3m5!1s0x89d50314cc0e8b73:0xc826008304ec6696!8m2!3d43.9057022!4d-78.8115539!16s%2Fg%2F11vch27030';
+        const appleDirections = `https://maps.apple.com/?daddr=${latitude},${longitude}`;
+
+        marker.bindPopup(
+            `<strong>Al-Ajeal Real Estate Team</strong><br>` +
+            `1405 Durham Regional Hwy 2, Courtice, ON L1E 2J5<br><br>` +
+            `<a href="${googleDirections}" target="_blank" rel="noopener">Get Directions (Google Maps)</a><br>` +
+            `<a href="${appleDirections}" target="_blank" rel="noopener">Get Directions (Apple Maps)</a>`
+        ).openPopup();
+
+        map.fitBounds(circle.getBounds(), { padding: [20, 20] });
 
         const form = document.getElementById('contact-form');
         const status = document.getElementById('form-status');
 
-        form.addEventListener('submit', async (event) => {
+        form.addEventListener('submit', (event) => {
             event.preventDefault();
-            status.textContent = 'Sending your message...';
+            status.textContent = '';
             status.classList.remove('is-error', 'is-success');
 
-            try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form)
-                });
+            const name = form.elements['name'].value.trim();
+            const email = form.elements['email'].value.trim();
+            const message = form.elements['message'].value.trim();
 
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                form.reset();
-                status.textContent = 'Thanks! We will be in touch shortly.';
-                status.classList.add('is-success');
-            } catch (error) {
-                status.textContent = 'We could not send your message. Please call or email us directly.';
+            if (!name || !email || !message) {
+                status.textContent = 'Please complete all fields before sending your message.';
                 status.classList.add('is-error');
+                return;
             }
+
+            const subject = `Msg from ${name}`;
+            const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+            const mailtoLink = `mailto:alajeal6@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            status.textContent = 'Opening your email app so you can send the message.';
+            status.classList.add('is-success');
+            form.reset();
+            window.location.href = mailtoLink;
         });
     </script>
 </body>
