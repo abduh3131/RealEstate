@@ -1,96 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Contact Us</title>
-    <link rel="stylesheet" type="text/css" href="style2.css">
-    <link rel="stylesheet" href="https://openlayers.org/en/v6.9.0/css/ol.css" type="text/css">
-    <script src="https://openlayers.org/en/v6.9.0/build/ol.js" type="text/javascript"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <title>Listings | Al-Ajeal Real Estate Team</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Browse property listings from the Al-Ajeal Real Estate Team in Durham Region.">
+    <link rel="icon" href="dd.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;700&family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="dd.png">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Raleway', sans-serif;
-            font-family: 'Source Sans Pro', sans-serif;
-            font-size: 16pt;
-            background-color: #f4f4f4;
-            background-image:url("cs.jpg");
-        }
-
-
-        .top-bar {
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
-
-      
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-       
-
-        h1 {
-            font-size: 18pt;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;600;700&family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header>
-
-
-
-
-
-        <nav class="navbar">
-
-            <div class="nav-links">
-                <ul>
-                    <li><a style="background-color:transparent; font-size:16pt;" href="index.html">Home</a></li>
-                    <li><a class="active" style="background-color:transparent; font-size:16pt;" href="listings.html">Listings</a></li>
-                    <li><a style="background-color:transparent; font-size:16pt;" href="contact.html">Contact</a></li>
-
-                </ul>
+<body class="listings-page">
+    <header class="hero">
+        <nav class="site-nav" aria-label="Primary">
+            <a class="nav-logo" href="index.html">Al-Ajeal</a>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="nav-toggle-line"></span>
+                <span class="nav-toggle-line"></span>
+                <span class="nav-toggle-line"></span>
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <div class="nav-links" id="primary-navigation">
+                <a class="nav-link" href="index.html#welcome">Home</a>
+                <a class="nav-link is-active" href="listings.html">Listings</a>
+                <a class="nav-link" href="contact.html">Contact</a>
             </div>
         </nav>
-        <hr style="width:25%;" />
-        <div class="site-title">
-            <h1>AL - AJEAL</h1>
+
+        <div class="hero-content reveal">
+            <p class="eyebrow">Listings</p>
+            <h1>New opportunities are on the way</h1>
+            <p class="lead">Our latest listings are coming soon. In the meantime, connect with us for exclusive previews tailored to your goals.</p>
         </div>
-
-
-
-        <div style="margin-top:10%">
-            <h1 style="font-size:48pt;">Coming Soon</h1>
-            <hr style=" width: 60%; border: 0;  border-top: 1px solid white; color:white;" />
-            <p style="font-size:28pt;">Stay tuned</p>
-        </div>
-
-
     </header>
 
-
-
     <main>
-
-
+        <section class="section">
+            <div class="listings-placeholder reveal">
+                <h2>Stay tuned</h2>
+                <p>We’re curating a selection of properties that match the needs of buyers and investors across Durham Region. Check back shortly or contact us for early access to upcoming opportunities.</p>
+                <a class="btn btn-primary" href="contact.html">Notify Me</a>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>Copyright © 2023 Al-Ajeal Team - All Rights Reserved.</p>
-        <section>
-            <p>@Abdullah.Hanoosh</p>
-        </section>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; <span id="year"></span> Al-Ajeal Real Estate Team. All Rights Reserved.</p>
+            <p>1405 Durham Regional Hwy 2, Courtice, ON L1E 2J5</p>
+        </div>
     </footer>
+
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        navToggle.addEventListener('click', () => {
+            const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+            navToggle.setAttribute('aria-expanded', !expanded);
+            navLinks.classList.toggle('is-open');
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
