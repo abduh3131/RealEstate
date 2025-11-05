@@ -501,7 +501,7 @@ body.listings-page main {
 
 .contact-details {
     display: grid;
-    gap: clamp(2.5rem, 4vw, 3.5rem);
+    gap: clamp(3rem, 5vw, 4rem);
 }
 
 .contact-cards {
@@ -540,7 +540,7 @@ body.listings-page main {
     border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.map-wrapper {
+.map-card {
     border-radius: 1.5rem;
     overflow: hidden;
     box-shadow: var(--shadow-soft);
