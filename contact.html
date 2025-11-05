@@ -1,351 +1,163 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Contact Us</title>
-    <link rel="stylesheet" type="text/css" href="style1.css">
-    <link rel="stylesheet" href="https://openlayers.org/en/v6.9.0/css/ol.css" type="text/css">
-    <script src="https://openlayers.org/en/v6.9.0/build/ol.js" type="text/javascript"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;700&family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="dd.png">
-    <style>
-       @media screen and (max-width: 600px) {
+  <meta charset="utf-8">
+  <title>Contact Al-Ajeal Real Estate Team</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Connect with the Al-Ajeal Real Estate Team for expert assistance with buying, selling, or investing in Durham Region.">
+  <link rel="icon" href="dd.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;600;700&family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 
-        body {
-            font-size: 14pt;
-             overflow-x: hidden;
-        }
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
 
-        .contact-section {
-            flex-direction: column;
-        }
+  <style>
+    #map { height: 420px; width: 100%; }
 
-        .agents-section,
-        .office-section {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .agent-contact,
-        .office-contact {
-            flex-basis: 100%;
-            margin-bottom: 10px;
-        }
-
-        .agent-contact:first-child,
-        .agent-contact:last-child {
-            margin-right: 0;
-            margin-left: 0;
-        }
-
-        .agent-contact:hover,
-        .office-contact:hover {
-            transform: scale(1.0); /* Disable pop-out effect on mobile */
-        }
-
-        .agent-contact h3,
-        .office-contact h3 {
-            font-size: 18px;
-        }
-
-        .agent-contact a,
-        .office-contact p {
-            font-size: 14px;
-        }
-
-        .office-contact {
-            margin-top: 20px;
-        }
-
-        h1 {
-            font-size: 16pt;
-        }
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 32px;
+      align-items: flex-start;
     }
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Raleway', sans-serif;
-            font-family: 'Source Sans Pro', sans-serif;
-            font-size: 16pt;
-            background-color: #f4f4f4;
-        }
 
+    .map-card {
+      padding: 0;
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      height: auto;
+    }
 
-        .top-bar {
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
+    .contact-form {
+      max-width: none;
+    }
 
-        .contact-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin: 20px auto;
-            max-width: 960px;
-        }
-
-        .agent-contact,
-        .office-contact {
-            flex-basis: 48%;
-            padding: 20px;
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            transition: 0.3s; /* Add a smooth transition */
-        }
-
-            .agent-contact:hover,
-            .office-contact:hover {
-                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Increase the shadow size on hover */
-                transform: scale(1.05); /* Scale the card up to create a pop-out effect */
-            }
-
-            .agent-contact h3,
-            .office-contact h3 {
-                margin-top: 0;
-                margin-bottom: 10px;
-                font-size: 20px;
-            }
-
-            .agent-contact a,
-            .office-contact p {
-                color: #333;
-                text-decoration: none;
-                line-height: 1.5;
-                margin-bottom: 10px;
-            }
-
-                .agent-contact a:hover {
-                    color: #ff0000;
-                }
-
-        .map {
-            height: 300px;
-            width: 100%;
-            border: 3px solid rgb(210, 47, 37);
-            ;
-            margin: 0 auto;
-        }
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        a {
-            background-color: transparent;
-            color: black;
-            transition: color 0.3s ease-in-out; /* added transition */
-        }
-
-            a:hover {
-                color: rgb(210, 47, 37);
-                ; /* added hover effect */
-            }
-
-        .contact-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            margin: 20px auto;
-            max-width: 960px;
-        }
-
-        .agents-section {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        .office-section {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-
-        .agent-contact,
-        .office-contact {
-            flex-basis: 48%;
-            padding: 20px;
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            transition: 0.3s;
-        }
-
-            .agent-contact:first-child {
-                margin-right: 2%;
-            }
-
-            .agent-contact:last-child {
-                margin-left: 2%;
-            }
-
-        .office-contact {
-            flex-basis: 100%;
-        }
-
-        h1 {
-            font-size: 18pt;
-        }
-    </style>
+    @media (max-width: 900px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+      .map-card {
+        margin-top: 24px;
+      }
+    }
+  </style>
 </head>
-<body>
-    <header>
+<body class="contact-page">
+  <header class="hero">
+    <nav class="site-nav" aria-label="Primary">
+      <a class="nav-logo" href="index.html">Al-Ajeal</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
+        <a class="nav-link" href="index.html#welcome">Home</a>
+        <a class="nav-link" href="listings.html">Listings</a>
+        <a class="nav-link is-active" href="contact.html">Contact</a>
+      </div>
+    </nav>
 
+    <div class="hero-content reveal">
+      <p class="eyebrow">Let’s Connect</p>
+      <h1>We’re here to help</h1>
+      <p class="lead">Reach out to the Al-Ajeal Team for tailored advice and seamless support with your next move.</p>
+    </div>
+  </header>
 
+  <main>
+    <section class="section">
+      <div class="contact-layout">
+        <div class="contact-details">
+          <div class="contact-cards">
+            <article class="contact-card reveal">
+              <h3>Banne Al-Ajeal</h3>
+              <p>Phone: <a href="tel:2896003178">289-600-3178</a></p>
+              <p>Email: <a href="mailto:b.alajeal@royallepage.ca">b.alajeal@royallepage.ca</a></p>
+            </article>
+            <article class="contact-card reveal">
+              <h3>Mahmoud Al-Ajeal</h3>
+              <p>Phone: <a href="tel:2896882626">289-688-2626</a></p>
+              <p>Email: <a href="mailto:m.alajeal@royallepage.ca">m.alajeal@royallepage.ca</a></p>
+            </article>
+            <article class="contact-card office-card reveal">
+              <h3>Office Contact</h3>
+              <p>Phone: <a href="tel:9057202004">905-720-2004</a></p>
+              <p>Email: <a href="mailto:derekbaird@royallepage.ca">derekbaird@royallepage.ca</a></p>
+              <p>Address: <a href="https://www.google.com/maps/place/Al-Ajeal+Real+Estate+Team" target="_blank" rel="noopener">
+                1405 Durham Regional Hwy 2, Unit 4, Courtice, ON L1E 2J5</a>
+              </p>
+            </article>
+          </div>
 
-
-
-        <nav class="navbar">
-
-            <div class="nav-links">
-                <ul>
-                    <li><a style="background-color:transparent; font-size:16pt;" href="index.html">Home</a></li>
-                    <li><a style="background-color:transparent; font-size:16pt;" href="listings.html">Listings</a></li>
-                    <li><a class="active"style="background-color:transparent; font-size:16pt;" href="#contactCards">Contact</a></li>
-
-                </ul>
-            </div>
-        </nav>
-        <hr style="width:25%;" />
-        <div class="site-title">
-            <h1>AL - AJEAL</h1>
+          <form class="contact-form reveal" id="contact-form" novalidate>
+            <h3>Send us a message</h3>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your Name" required>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="Your Email" required>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
+            <button class="btn btn-primary" type="submit">Send Message</button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
         </div>
 
-
-
-        <div style="margin-top:10%">
-            <h1 style="font-size:48pt;">Contact Us</h1>
-            <hr style=" width: 60%; border: 0;  border-top: 1px solid white; color:white;" />
-            <p style="font-size:28pt;">Below</p>
+        <div class="map-card reveal">
+          <div id="map" role="presentation" aria-label="Map showing the office location"></div>
         </div>
+      </div>
+    </section>
+  </main>
 
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; <span id="year"></span> Al-Ajeal Real Estate Team. All Rights Reserved.</p>
+      <p>1405 Durham Regional Hwy 2, Courtice, ON L1E 2J5</p>
+    </div>
+  </footer>
 
-    </header>
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
 
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    <hr style="width:25%; margin-top:5%; margin-bottom:5%;" />
+    // Map setup
+    const lat = 43.90574082062903;
+    const lng = -78.81129641104262;
+    const googleLink = 'https://www.google.com/maps/place/Al-Ajeal+Real+Estate+Team/@43.9057022,-78.8141342,17z/data=!3m1!4b1!4m6!3m5!1s0x89d50314cc0e8b73:0xc826008304ec6696!8m2!3d43.9057022!4d-78.8115539!16s%2Fg%2F11vch27030';
 
+    const map = L.map('map', { scrollWheelZoom: false }).setView([lat, lng], 16);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
 
-    <main>
+    // Add only marker (no circle)
+    const marker = L.marker([lat, lng]).addTo(map);
 
-        <section class="contact-section" id="contactCards">
+    marker.bindPopup(
+      `<strong>Al-Ajeal Real Estate Team</strong><br>1405 Durham Regional Hwy 2, Courtice, ON L1E 2J5<br><br>
+       <a href="${googleLink}" target="_blank" rel="noopener">Get Directions (Google Maps)</a>`
+    );
 
-            <div class="agents-section">
-                <div class="agent-contact">
-                    <h3>Banne Al-Ajeal</h3>
-                    <p>Phone: <a href="tel:2896003178">289-600-3178</a></p>
-                    <p>Email:<a href="mailto:b.alajeal@royallepage.ca"> b.alajeal@royallepage.ca</a></p>
-                </div>
-                <div class="agent-contact">
-                    <h3>Mahmoud Al-Ajeal</h3>
-                    <p>Phone: <a href="tel:2896882626">289-688-2626</a></p>
-                    <p>Email:<a href="mailto:m.alajeal@royallepage.ca"> m.alajeal@royallepage.ca</a></p>
-                </div>
-            </div>
-            <div class="office-section">
-                <div class="office-contact">
-                    <h3>Office Contact Information</h3>
-                    <p>Phone: <a href="tel:905-720-2004">905-720-2004</a></p>
-                    <p>Email: <a href="mailto:derekbaird@royallepage.ca">derekbaird@royallepage.ca</a></p>
-                    <p>Address: <a href="https://www.google.com/maps/place/The+Derek+Baird+Real+Estate+Team/@43.90623,-78.8117494,17z/data=!4m14!1m7!3m6!1s0x89d50314cc0e8b73:0x157a634ed602aac7!2s1405+Durham+Regional+Hwy+2+%234,+Courtice,+ON+L1E+2J5!3b1!8m2!3d43.90623!4d-78.8117494!3m5!1s0x89d5032809b45243:0x350b022192b45a5b!8m2!3d43.90623!4d-78.8117494!16s%2Fg%2F11fl4m7ff2?entry=ttu">1405 Durham Regional Hwy 2 Unit 4, Courtice, ON L1E 2J5</a></p>
-                </div>
-            </div>
-        </section>
-        
-    <hr style="width:25%; margin-top:5%; margin-bottom:5%;" />
-
-
-        <div id="map" class="map"></div>
-        <script type="text/javascript">
-            var map = new ol.Map({
-                target: 'map',
-                layers: [
-                    new ol.layer.Tile({
-                        source: new ol.source.OSM()
-                    })
-                ],
-                view: new ol.View({
-                    center: ol.proj.fromLonLat([-78.81141026724706, 43.90565979935921]),
-                    zoom: 17
-                })
-
-            });
-
-            var marker = new ol.Feature({
-                geometry: new ol.geom.Point(ol.proj.fromLonLat([-78.81141026724706, 43.90565979935921]))
-            });
-
-            var markerStyle = new ol.style.Style({
-                image: new ol.style.Circle({
-                    radius: 7,
-                    fill: new ol.style.Fill({
-                        color: '#ff0000'
-                    }),
-                    stroke: new ol.style.Stroke({
-                        color: '#fff',
-                        width: 2
-                    })
-                })
-            });
-
-            marker.setStyle(markerStyle);
-
-            var vectorSource = new ol.source.Vector({
-                features: [marker]
-            });
-
-            var markerVectorLayer = new ol.layer.Vector({
-                source: vectorSource,
-            });
-
-            map.addLayer(markerVectorLayer);
-
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        </script>
-
-        <script>
-            $(document).ready(function () {
-                $('a[href^="#"]').on('click', function (e) {
-                    e.preventDefault();
-
-                    var target = this.hash;
-                    var $target = $(target);
-
-                    $('html, body').stop().animate({
-                        'scrollTop': $target.offset().top
-                    }, 1500, 'swing', function () { // Duration increased from 900 to 1500 ms
-                        window.location.hash = target;
-                    });
-                });
-            });
-        </script>
-
-    </main>
-
-    <footer>
-        <p>Copyright © 2023 Al-Ajeal Team - All Rights Reserved.</p>
-        <section>
-            <p>@Abdullah.Hanoosh</p>
-        </section>
-    </footer>
+    // Keep view centered nicely
+    map.setView([lat, lng], 16);
+  </script>
 </body>
 </html>

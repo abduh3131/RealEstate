@@ -1,432 +1,210 @@
-
-
-
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Al-Ajeal Team</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+    <title>Al-Ajeal Real Estate Team</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Al-Ajeal Real Estate Team – delivering expert guidance for buyers, sellers, and investors across Durham Region.">
+    <link rel="icon" href="dd.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;700&family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <meta name="description" content="Banne Al-Ajeal and Mahmoud Al-Ajeal are expert real estate agents with Royal LePage, offering personalized services to home buyers and sellers in Ontario, Canada. Contact them today to get started with your real estate journey.">
-<link rel="icon" href="dd.png">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;600;700&family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 
+    <style>
+      /* --- Agent images: consistent, clean framing --- */
+      .agent-card img{
+        display:block;
+        width:100%;
+        aspect-ratio: 4 / 3;   /* uniform window so cards line up */
+        height:auto;
+        object-fit: cover;     /* fills the frame without letterboxing */
+        object-position:center;/* default center (can override inline per image) */
+        border-top-left-radius:14px;
+        border-top-right-radius:14px;
+        background:#f6f6f6;
+      }
+      /* keep card content snug to image */
+      .agent-card .agent-details{ margin-top:0; }
+
+      /* Responsive tweak */
+      @media (max-width: 768px){
+        .agent-card img{ aspect-ratio: 16 / 10; }
+      }
+    </style>
 </head>
-<style>
-    body {
-        text-align: center;
-        font-style: normal;
-    }
-
-    .headshot {
-        width: 25%;
-        height: 25%;
-        border: solid 1px;
-    }
-
-    p {
-        font-size: 14pt;
-        font-style: normal;
-    }
-</style>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-    @media screen and (max-width: 600px) {
-        body {
-            font-size: 16px;
-        }
-
-        .headshot {
-            width: 50%;
-            height: 50%;
-        }
-
-        p {
-            font-size: 16px;
-        }
-
-        .nav-links ul li {
-            font-size: 14pt;
-        }
-
-        h1 {
-            font-size: 36pt;
-        }
-
-        p {
-            font-size: 20pt;
-        }
-
-        .site-title h1 {
-            font-size: 24pt;
-        }
-
-        #mt {
-            flex-direction: column;
-        }
-
-            #mt article {
-                width: 100%;
-            }
-
-        #ses {
-            grid-template-columns: 1fr;
-            grid-template-rows: repeat(6, 1fr);
-        }
-
-        .rl-image {
-            flex: 1 0 100%;
-            max-width: 100%;
-        }
-
-        .rl-text {
-            flex: 1 0 100%;
-        }
-    }
-</style>
-
-<body>
-
-
-
-
-
-
-    <header>
-
-
-
-
-
-        <nav class="navbar">
-
-            <div class="nav-links">
-                <ul>
-                    <li><a class="active" style="background-color:transparent; font-size:16pt;" href="#welcome">Home</a></li>
-                    <li><a style="background-color:transparent; font-size:16pt;" href="listings.html">Listings</a></li>
-                    <li><a style="background-color:transparent; font-size:16pt;" href="contact.html">Contact</a></li>
-                </ul>
+<body class="home-page">
+    <header class="hero">
+        <nav class="site-nav" aria-label="Primary">
+            <a class="nav-logo" href="index.html">Al-Ajeal</a>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="nav-toggle-line"></span>
+                <span class="nav-toggle-line"></span>
+                <span class="nav-toggle-line"></span>
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <div class="nav-links" id="primary-navigation">
+                <a class="nav-link is-active" href="#welcome">Home</a>
+                <a class="nav-link" href="listings.html">Listings</a>
+                <a class="nav-link" href="contact.html">Contact</a>
             </div>
         </nav>
-        <hr style="width:25%;" />
-        <div class="site-title">
-            <h1>AL - AJEAL</h1>
+
+        <div class="hero-content reveal">
+            <p class="eyebrow">Durham Region Real Estate Experts</p>
+            <h1>Only the Best Deals</h1>
+            <p class="lead">We make real estate a breeze by combining deep market knowledge with attentive, personal service.</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="listings.html">See Listings</a>
+                <a class="btn btn-outline" href="#team">Meet the Team</a>
+            </div>
         </div>
-
-
-
-        <div style="margin-top:10%">
-            <h1 style="font-size:48pt;">Only the Best Deals</h1>
-            <hr style=" width: 60%; border: 0;  border-top: 1px solid white; color:white;" />
-            <p style="font-size:28pt;">We make real estate a breeze!</p>
-        </div>
-
-        <div style="margin:10px; margin-top:3%">
-            <a style="font-size:large" href="listings.html">See Listings</a>
-        </div>
-
     </header>
 
-
     <main>
-        <section>
-            <div id="welcome">
-                <h1 style="font-size:18pt;">Welcome</h1>
-                <p>There's much to see here. So, take your time, look around, and learn all there is to know about us. We hope you enjoy our site and take a moment to drop us a line.</p>
+        <section class="section section-intro" id="welcome">
+            <div class="section-content reveal">
+                <h2>Welcome</h2>
+                <p>There's much to see here. Take your time, explore our story, and learn how we guide clients through every step of the buying and selling journey. We hope you enjoy our site and take a moment to drop us a line.</p>
+            </div>
+            <div class="section-grid reveal">
+                <article class="highlight-card">
+                    <h3>Personal Guidance</h3>
+                    <p>We tailor every experience to your goals so that you can move forward with confidence and clarity.</p>
+                </article>
+                <article class="highlight-card">
+                    <h3>Market Insight</h3>
+                    <p>From pricing strategies to negotiations, our expertise helps you make smart, informed decisions.</p>
+                </article>
             </div>
         </section>
-        <hr style="width:80%; margin-top:5%; margin-bottom:5%;" />
 
-        <style>
-            h1 {
-                font-size: 18pt;
-            }
-
-            #mt {
-                display: flex;
-                justify-content: space-around;
-            }
-
-                #mt article {
-                    width: 40%;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                }
-
-                #mt img {
-                    display: block;
-                    width: 100%;
-                    height: auto;
-                    border-radius: 50%;
-                }
-
-                #mt h3 {
-                    margin-top: 10px;
-                    margin-bottom: 10px;
-                    text-align: center;
-                }
-
-                #mt p {
-                    text-align: justify;
-                }
-
-            #show-more {
-            }
-
-            #mt img {
-                transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            }
-
-                #mt img:hover {
-                    transform: scale(1.05) translateY(-10px);
-                    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
-                }
-        </style>
-        <h1>Meet the Team</h1>
-        <section style="margin:10%; margin-left:15%; margin-right:15%;">
-            <div id="mt">
-
-                <article>
-                    <img id="headshot" src="b.jpg" alt="Banne">
-                    <h3>Banne Al-Ajeal</h3>
-                    <div class="bio">
-                        <p class="short-bio">
-                            Meet Banne, a seasoned real estate expert in Durham, previously a top-notch computer engineer.
-                            Her insight into high-quality homes and promising investments is unmatched. Drawing from her tech background,
-                            she adeptly navigates modern real estate tools and data analytics. Whether you're a first-time buyer or experienced investor, rely on
-                        </p>
-
-                        <p class="long-bio hidden">
-                            Meet Banne, a seasoned real estate expert in Durham, previously a top-notch computer engineer.
-                            Her insight into high-quality homes and promising investments is unmatched. Drawing from her tech background,
-                            she adeptly navigates modern real estate tools and data analytics. Whether you're a first-time buyer or experienced investor,
-                            rely on Banne's exceptional commitment and attention to detail for a seamless property transaction in Durham.
-                        </p>
+        <section class="section section-team" id="team">
+            <div class="section-header reveal">
+                <p class="eyebrow">Our Team</p>
+                <h2>Meet the Al-Ajeal Team</h2>
+                <p>Trusted partners who combine engineering precision and legal expertise to deliver results.</p>
+            </div>
+            <div class="card-grid">
+                <article class="agent-card reveal">
+                    <!-- Nudge the crop slightly down so the head isn't high-cropped -->
+                    <img src="b.jpg" alt="Portrait of Banne Al-Ajeal" loading="lazy" style="object-position:50% 42%;">
+                    <div class="agent-details">
+                        <h3>Banne Al-Ajeal</h3>
+                        <p class="role">Sales Representative</p>
+                        <p>Meet Banne, a seasoned real estate expert in Durham and a former top-notch computer engineer. Her insight into high-quality homes and promising investments is unmatched. Drawing from her tech background, she adeptly navigates modern real estate tools and data analytics to keep you ahead of the curve.</p>
+                        <details>
+                            <summary>Read more</summary>
+                            <p>Whether you're a first-time buyer or experienced investor, rely on Banne's exceptional commitment and attention to detail for a seamless property transaction in Durham.</p>
+                        </details>
                     </div>
-                    <button class="show-more" onclick="showMore('banne')">Show more</button>
-
                 </article>
 
-                <article>
-                    <img id="headshot" src="IMG_1875.jpeg" alt="Mahmoud">
-                    <h3>Mahmoud Al-Ajeal</h3>
-                    <div class="bio">
-                        <p class="short-bio">Mahmoud is a highly skilled real estate agent in Durham region, renowned for his expertise in home and investment properties. As a top-class legal practitioner, he handles complex tasks including leases, rentals, and buy-sell transactions with ease. His in-depth knowledge of property laws and genuine dedication to his clients make him an invaluable </p>
-                        <p class="long-bio hidden">Mahmoud is a highly skilled real estate agent in Durham region, renowned for his expertise in home and investment properties. As a top-class legal practitioner, he handles complex tasks including leases, rentals, and buy-sell transactions with ease. His in-depth knowledge of property laws and genuine dedication to his clients make him an invaluable asset. Mahmoud's comprehensive understanding of the local market dynamics, combined with his strong legal acumen, ensures smooth and successful property deals. Count on Mahmoud to guide you confidently through your real estate journey.</p>
+                <article class="agent-card reveal">
+                    <!-- Slightly higher crop to center face in the frame -->
+                    <img src="IMG_1875.jpeg" alt="Portrait of Mahmoud Al-Ajeal" loading="lazy" style="object-position:50% 38%;">
+                    <div class="agent-details">
+                        <h3>Mahmoud Al-Ajeal</h3>
+                        <p class="role">Sales Representative</p>
+                        <p>Mahmoud is a highly skilled real estate agent in the Durham region, renowned for expertise in both home and investment properties. As a top-class legal practitioner, he handles leases, rentals, and buy-sell transactions with ease.</p>
+                        <details>
+                            <summary>Read more</summary>
+                            <p>His in-depth knowledge of property laws and dedication to clients make him an invaluable asset. Count on Mahmoud to guide you confidently through every step of your real estate journey.</p>
+                        </details>
                     </div>
-                    <button class="show-more" onclick="showMore('mahmoud')">Show more</button>
-
                 </article>
-
             </div>
         </section>
 
-        <a id="contact-button" href="contact.html">Contact</a>
-
-        <hr style="width:80%; margin-top:5%; margin-bottom:5%;" />
-        <h1 style="margin:10%">Our Services</h1>
-
-
-        <style>
-            .hidden {
-                display: none;
-            }
-
-            #ses {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(3, 1fr);
-                gap: 5px; /* Reduced gap size */
-            }
-
-            .image-cell {
-                width: 100%;
-            }
-
-            .text-cell {
-                padding: 20px;
-            }
-
-            h3 {
-                margin-bottom: 10px;
-            }
-        </style>
-
-        <section id="ses">
-            <div class="image-cell">
-                <img id="sss" src="kit.jpg" alt="Real Estate Done Right">
+        <section class="section section-services" id="services">
+            <div class="section-header reveal">
+                <p class="eyebrow">Services</p>
+                <h2>What We Do Best</h2>
+                <p>Focused offerings that keep your real estate goals front and centre.</p>
             </div>
-            <div class="text-cell">
-                <h3>Real Estate Done Right</h3>
-                <p>Nervous about your property adventure? Don’t be. Whether you're getting ready to buy or sell, in the middle of it, or just looking for some answers, our top-notch skills ensure you get the best experience possible. It’s what we love to do.</p>
-            </div>
-            <div class="text-cell">
-                <h3>Commercial, Residential, and Rentals</h3>
-                <p>Large or small, condo or mansion, we can find it and get it for you at the price that's right. TICs? Fixer-uppers? Luxury? We can help with all of it. We always have a current list of available properties for you to check out.</p>
-            </div>
-            <div class="image-cell">
-                <img id="sss" src="ap.jpg" alt="Commercial, Residential, and Rentals">
-            </div>
-            <div class="image-cell">
-                <img id="sss" src="of.jpg" alt="Rely on Expertise">
-            </div>
-            <div class="text-cell">
-                <h3>Rely on Expertise</h3>
-                <p>If you have questions about affordability, credit, legal matters, or income, trust us to find you what you need fast. We make sure you feel confident and educated every step of the way.</p>
+            <div class="card-grid service-grid">
+                <article class="service-card reveal">
+                    <img src="kit.jpg" alt="Modern kitchen interior" loading="lazy">
+                    <div class="service-content">
+                        <h3>Real Estate Done Right</h3>
+                        <p>Nervous about your property adventure? Don’t be. Whether you're getting ready to buy or sell, in the middle of it, or just looking for answers, our top-notch skills ensure the best experience possible. It’s what we love to do.</p>
+                    </div>
+                </article>
+                <article class="service-card reveal">
+                    <img src="ap.jpg" alt="High-rise apartment building" loading="lazy">
+                    <div class="service-content">
+                        <h3>Commercial, Residential, and Rentals</h3>
+                        <p>Large or small, condo or mansion, we can find it and secure it at the price that's right. TICs? Fixer-uppers? Luxury? We can help with all of it and always have a current list of available properties for you.</p>
+                    </div>
+                </article>
+                <article class="service-card reveal">
+                    <img src="of.jpg" alt="Office meeting" loading="lazy">
+                    <div class="service-content">
+                        <h3>Rely on Expertise</h3>
+                        <p>If you have questions about affordability, credit, legal matters, or income, trust us to find what you need fast. We make sure you feel confident and educated every step of the way.</p>
+                    </div>
+                </article>
             </div>
         </section>
 
-
-        <hr style="width:80%; margin-top:5%; margin-bottom:5%;" />
-
-        <img src="rl.png" alt="Royal LePage logo" class="rl-image">
-        <div id="rl">
-
-            <div class="rl-text" style="margin-left:10%; margin-right:10%;">
-                <h2>Our Experience at Royal LePage</h2>
-                <p>As agents at Royal LePage, we're part of a dynamic and supportive community that encourages us to excel. Here, we're empowered with the tools, training, and resources necessary to help our clients navigate the often complex real estate landscape. We find immense satisfaction in guiding home buyers and sellers through one of the most significant transactions of their lives, providing expert advice and personalized service every step of the way.</p>
-                <p>At Royal LePage, we're more than just real estate agents—we're trusted advisors. Our commitment to professionalism, integrity, and exceptional customer service is at the heart of everything we do. Being part of the Royal LePage team means we're backed by one of the strongest brands in Canada's real estate industry, which gives us, and in turn our clients, a distinct advantage.</p>
+        <section class="section section-royal">
+            <div class="royal-wrapper reveal">
+                <img src="rl.png" alt="Royal LePage logo" class="royal-logo" loading="lazy">
+                <div class="royal-copy">
+                    <h2>Our Experience at Royal LePage</h2>
+                    <p>As agents at Royal LePage, we're part of a dynamic and supportive community that encourages us to excel. Here, we're empowered with the tools, training, and resources necessary to help our clients navigate the complex real estate landscape.</p>
+                    <p>We're more than just real estate agents—we're trusted advisors. Backed by one of the strongest brands in Canada's real estate industry, we provide expert advice and personalized service every step of the way.</p>
+                </div>
             </div>
-        </div>
+        </section>
 
-
-
-        <style>
-            #rl {
-                display: flex;
-                align-items: start;
-                gap: 20px; /* adjust as needed */
-            }
-
-            .rl-image {
-                flex: 1 0 30%; /* adjust as needed */
-                max-width: 10%;
-            }
-
-            .rl-text {
-                flex: 1 0 70%; /* adjust as needed */
-            }
-        </style>
-
+        <section class="section section-cta">
+            <div class="cta-card reveal">
+                <h2>Ready to talk real estate?</h2>
+                <p>Connect with us to start your journey. We’ll walk you through every milestone with clarity and care.</p>
+                <a class="btn btn-primary" href="contact.html">Contact the Team</a>
+            </div>
+        </section>
     </main>
 
-
-
-    <footer>
-        <p>Copyright © 2023 Al-Ajeal Team - All Rights Reserved.</p>
-        <section>
-            <p>@Abdullah.Hanoosh</p>
-        </section>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; <span id="year"></span> Al-Ajeal Real Estate Team. All Rights Reserved.</p>
+            <p>1405 Durham Regional Hwy 2, Courtice, ON L1E 2J5</p>
+        </div>
     </footer>
 
     <script>
-        // Your JavaScript code here
+        document.body.classList.add('js');
 
-        // Get all "Show more" buttons
-        var buttons = document.getElementsByClassName("show-more");
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
 
-        // Add click event listener to each button
-        for (let button of buttons) {
-            button.addEventListener('click', function () {
-                var longBio = this.previousElementSibling.getElementsByClassName("long-bio")[0];
-                var shortBio = this.previousElementSibling.getElementsByClassName("short-bio")[0];
-                if (longBio.classList.contains('hidden')) {
-                    // If long bio is hidden, show it and hide short bio
-                    longBio.classList.remove('hidden');
-                    shortBio.classList.add('hidden');
-                    this.innerText = 'Show less';
-                } else {
-                    // If long bio is visible, hide it and show short bio
-                    longBio.classList.add('hidden');
-                    shortBio.classList.remove('hidden');
-                    this.innerText = 'Show more';
-                }
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', () => {
+                const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.setAttribute('aria-expanded', String(!expanded));
+                navLinks.classList.toggle('is-open');
             });
         }
-    </script>
 
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('a[href^="#"]').on('click', function (event) {
-                event.preventDefault();
-                var target = $(this.getAttribute('href'));
-                if (target.length) {
-                    $('html, body').stop().animate({
-                        scrollTop: target.offset().top
-                    }, 1000);
-                }
-            });
-        });
-
-
-
-    </script>
-
-
-    <div class="floating-contact-form">
-        <button class="toggle-form" onclick="toggleContactForm()">
-            <img src="email.png" alt="Email" width="50" height="50">
-        </button>
-
-        <div class="contact-form-container">
-            <h3>Contact Form</h3>
-            <form id="contact-form" onsubmit="submitContactForm(event)">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Your Message" required></textarea>
-                <button type="submit">Send</button>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        function toggleContactForm() {
-            var formContainer = document.querySelector('.contact-form-container');
-            formContainer.style.display = formContainer.style.display === 'none' ? 'block' : 'none';
+        const revealElements = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            revealElements.forEach((el) => observer.observe(el));
+        } else {
+            revealElements.forEach((el) => el.classList.add('reveal-visible'));
         }
 
-        function submitContactForm(event) {
-            event.preventDefault();
-
-            // Get the form values
-            var name = document.querySelector('input[name="name"]').value;
-            var email = document.querySelector('input[name="email"]').value;
-            var message = document.querySelector('textarea[name="message"]').value;
-
-            // Create a FormData object
-            var formData = new FormData();
-            formData.append('name', name);
-            formData.append('email', email);
-            formData.append('message', message);
-
-            // Use AJAX to send the form data to the PHP script
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'contact-form-handler.php', true);
-            xhr.onload = function () {
-                if (this.status === 200 && this.responseText.trim() == 'success') {
-                    // The email was successfully sent
-                    // Clear the form inputs
-                    document.querySelector('#contact-form').reset();
-                } else {
-                    // Something went wrong
-                    console.error('An error occurred: ' + this.responseText);
-                }
-            };
-            xhr.send(formData);
-        }
-
+        const year = document.getElementById('year');
+        if (year) year.textContent = new Date().getFullYear();
     </script>
-
-
-
-
 </body>
 </html>
