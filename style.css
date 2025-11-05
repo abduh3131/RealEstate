@@ -501,7 +501,7 @@ body.listings-page main {
 
 .contact-details {
     display: grid;
-    gap: clamp(2rem, 3vw, 2.75rem);
+    gap: clamp(2.5rem, 4vw, 3.5rem);
 }
 
 .contact-cards {

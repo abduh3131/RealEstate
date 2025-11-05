@@ -123,11 +123,10 @@
             year.textContent = new Date().getFullYear();
         }
 
-        const latitude = 43.90574082062903;
-        const longitude = -78.81129641104262;
+        const latitude = 43.905758240182095;
+        const longitude = -78.81154853576793;
         const highlightRadius = 120;
         const googleDirections = 'https://www.google.com/maps/place/Al-Ajeal+Real+Estate+Team/@43.9057022,-78.8141342,17z/data=!3m1!4b1!4m6!3m5!1s0x89d50314cc0e8b73:0xc826008304ec6696!8m2!3d43.9057022!4d-78.8115539!16s%2Fg%2F11vch27030';
-        const appleDirections = `https://maps.apple.com/?daddr=${latitude},${longitude}`;
 
         const mapContainer = document.getElementById('map');
 
@@ -153,14 +152,13 @@
                 marker.bindPopup(
                     `<strong>Al-Ajeal Real Estate Team</strong><br>` +
                     `1405 Durham Regional Hwy 2, Courtice, ON L1E 2J5<br><br>` +
-                    `<a href="${googleDirections}" target="_blank" rel="noopener">Get Directions (Google Maps)</a><br>` +
-                    `<a href="${appleDirections}" target="_blank" rel="noopener">Get Directions (Apple Maps)</a>`
+                    `<a href="${googleDirections}" target="_blank" rel="noopener">Get Directions (Google Maps)</a>`
                 ).openPopup();
 
                 map.fitBounds(circle.getBounds(), { padding: [20, 20] });
             } else {
                 mapContainer.classList.add('map-fallback');
-                mapContainer.innerHTML = `Interactive map is unavailable right now.<br><br><a href="${googleDirections}" target="_blank" rel="noopener">Open in Google Maps</a> · <a href="${appleDirections}" target="_blank" rel="noopener">Open in Apple Maps</a>`;
+                mapContainer.innerHTML = `Interactive map is unavailable right now.<br><br><a href="${googleDirections}" target="_blank" rel="noopener">Open in Google Maps</a>`;
             }
         }
 
