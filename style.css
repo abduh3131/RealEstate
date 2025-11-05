@@ -389,13 +389,13 @@ main {
     gap: 0.5rem;
 }
 
-.reveal {
+.js .reveal {
     opacity: 0;
     transform: translateY(40px);
     transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.reveal-visible {
+.js .reveal-visible {
     opacity: 1;
     transform: translateY(0);
 }
@@ -493,18 +493,20 @@ body.listings-page main {
 
 .contact-layout {
     display: grid;
-    gap: 2rem;
+    gap: clamp(2rem, 5vw, 3rem);
     max-width: var(--max-width);
+    margin: 0 auto;
+    width: 100%;
 }
 
 .contact-details {
     display: grid;
-    gap: 2rem;
+    gap: clamp(2rem, 3vw, 2.75rem);
 }
 
 .contact-cards {
     display: grid;
-    gap: 1.5rem;
+    gap: clamp(1.5rem, 3vw, 2rem);
 }
 
 .contact-card {
@@ -542,20 +544,30 @@ body.listings-page main {
     border-radius: 1.5rem;
     overflow: hidden;
     box-shadow: var(--shadow-soft);
+    background: var(--surface);
 }
 
 #map {
     width: 100%;
-    height: 420px;
+    min-height: 420px;
+}
+
+#map.map-fallback {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 2.5rem;
+    color: var(--muted);
+    font-weight: 600;
 }
 
 .contact-form {
     background: var(--surface);
-    padding: 2rem;
+    padding: clamp(2rem, 4vw, 2.5rem);
     border-radius: 1.5rem;
     box-shadow: var(--shadow-soft);
     display: grid;
-    gap: 1rem;
+    gap: clamp(1rem, 2.5vw, 1.5rem);
 }
 
 .contact-form h3 {
@@ -626,7 +638,7 @@ body.listings-page main {
     }
 
     .contact-cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     }
 
     .contact-form {

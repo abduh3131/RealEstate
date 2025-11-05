@@ -88,88 +88,118 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-o9N1j7kGSt+bVm3sye7BfFk0pIWfKkN5i52qjD8y4mE=" crossorigin=""></script>
     <script>
+        document.body.classList.add('js');
+
         const navToggle = document.querySelector('.nav-toggle');
         const navLinks = document.querySelector('.nav-links');
 
-        navToggle.addEventListener('click', () => {
-            const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
-            navToggle.setAttribute('aria-expanded', !expanded);
-            navLinks.classList.toggle('is-open');
-        });
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal-visible');
-                    observer.unobserve(entry.target);
-                }
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', () => {
+                const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.setAttribute('aria-expanded', String(!expanded));
+                navLinks.classList.toggle('is-open');
             });
-        }, { threshold: 0.2 });
+        }
 
-        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+        const revealElements = document.querySelectorAll('.reveal');
 
-        document.getElementById('year').textContent = new Date().getFullYear();
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            revealElements.forEach((el) => observer.observe(el));
+        } else {
+            revealElements.forEach((el) => el.classList.add('reveal-visible'));
+        }
+
+        const year = document.getElementById('year');
+        if (year) {
+            year.textContent = new Date().getFullYear();
+        }
 
         const latitude = 43.90574082062903;
         const longitude = -78.81129641104262;
-        const location = [latitude, longitude];
         const highlightRadius = 120;
-
-        const map = L.map('map', { scrollWheelZoom: false }).setView(location, 16);
-
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
-
-        const marker = L.marker(location).addTo(map);
-
-        const circle = L.circle(location, {
-            radius: highlightRadius,
-            fillOpacity: 0.15,
-            weight: 1,
-            color: '#d22f25'
-        }).addTo(map);
-
         const googleDirections = 'https://www.google.com/maps/place/Al-Ajeal+Real+Estate+Team/@43.9057022,-78.8141342,17z/data=!3m1!4b1!4m6!3m5!1s0x89d50314cc0e8b73:0xc826008304ec6696!8m2!3d43.9057022!4d-78.8115539!16s%2Fg%2F11vch27030';
         const appleDirections = `https://maps.apple.com/?daddr=${latitude},${longitude}`;
 
-        marker.bindPopup(
-            `<strong>Al-Ajeal Real Estate Team</strong><br>` +
-            `1405 Durham Regional Hwy 2, Courtice, ON L1E 2J5<br><br>` +
-            `<a href="${googleDirections}" target="_blank" rel="noopener">Get Directions (Google Maps)</a><br>` +
-            `<a href="${appleDirections}" target="_blank" rel="noopener">Get Directions (Apple Maps)</a>`
-        ).openPopup();
+        const mapContainer = document.getElementById('map');
 
-        map.fitBounds(circle.getBounds(), { padding: [20, 20] });
+        if (mapContainer) {
+            if (window.L && typeof L.map === 'function') {
+                const location = [latitude, longitude];
+                const map = L.map(mapContainer, { scrollWheelZoom: false }).setView(location, 16);
+
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '© OpenStreetMap contributors'
+                }).addTo(map);
+
+                const marker = L.marker(location).addTo(map);
+
+                const circle = L.circle(location, {
+                    radius: highlightRadius,
+                    fillOpacity: 0.15,
+                    weight: 1,
+                    color: '#d22f25'
+                }).addTo(map);
+
+                marker.bindPopup(
+                    `<strong>Al-Ajeal Real Estate Team</strong><br>` +
+                    `1405 Durham Regional Hwy 2, Courtice, ON L1E 2J5<br><br>` +
+                    `<a href="${googleDirections}" target="_blank" rel="noopener">Get Directions (Google Maps)</a><br>` +
+                    `<a href="${appleDirections}" target="_blank" rel="noopener">Get Directions (Apple Maps)</a>`
+                ).openPopup();
+
+                map.fitBounds(circle.getBounds(), { padding: [20, 20] });
+            } else {
+                mapContainer.classList.add('map-fallback');
+                mapContainer.innerHTML = `Interactive map is unavailable right now.<br><br><a href="${googleDirections}" target="_blank" rel="noopener">Open in Google Maps</a> · <a href="${appleDirections}" target="_blank" rel="noopener">Open in Apple Maps</a>`;
+            }
+        }
 
         const form = document.getElementById('contact-form');
         const status = document.getElementById('form-status');
 
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            status.textContent = '';
-            status.classList.remove('is-error', 'is-success');
+        if (form && status) {
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                status.textContent = '';
+                status.classList.remove('is-error', 'is-success');
 
-            const name = form.elements['name'].value.trim();
-            const email = form.elements['email'].value.trim();
-            const message = form.elements['message'].value.trim();
+                const name = form.elements['name'].value.trim();
+                const email = form.elements['email'].value.trim();
+                const message = form.elements['message'].value.trim();
 
-            if (!name || !email || !message) {
-                status.textContent = 'Please complete all fields before sending your message.';
-                status.classList.add('is-error');
-                return;
-            }
+                if (!name || !email || !message) {
+                    status.textContent = 'Please complete all fields before sending your message.';
+                    status.classList.add('is-error');
+                    return;
+                }
 
-            const subject = `Msg from ${name}`;
-            const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
-            const mailtoLink = `mailto:alajeal6@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                const subject = `Msg from ${name}`;
+                const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+                const mailtoLink = `mailto:alajeal6@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-            status.textContent = 'Opening your email app so you can send the message.';
-            status.classList.add('is-success');
-            form.reset();
-            window.location.href = mailtoLink;
-        });
+                status.textContent = 'Opening your email app so you can send the message.';
+                status.classList.add('is-success');
+                form.reset();
+
+                try {
+                    window.location.href = mailtoLink;
+                } catch (error) {
+                    status.textContent = 'We couldn\'t open your email app. Please email us at alajeal6@gmail.com.';
+                    status.classList.remove('is-success');
+                    status.classList.add('is-error');
+                }
+            });
+        }
     </script>
 </body>
 </html>
